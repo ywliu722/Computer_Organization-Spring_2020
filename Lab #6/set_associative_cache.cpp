@@ -9,8 +9,6 @@
 #include <vector>
 #include <string>
 
-#define WAY 8
-#define CACHESIZE 32
 #define BLOCKSIZE 64
 
 using namespace std;
@@ -55,7 +53,7 @@ int binary_to_decimal(vector<int> &target, int start, int end){
 }
 
 // Cache Simulation
-void CacheSimulator(vector<vector<int> > &binary_string){
+void CacheSimulator(vector<vector<int> > &binary_string, int WAY, int CACHESIZE){
     // calculate some needed numbers
     int block_num = ((CACHESIZE * 1024) / BLOCKSIZE)/WAY;
     int offset_length = int(log2(BLOCKSIZE));
@@ -128,7 +126,14 @@ int main(){
     }
 
     vector<vector<int> > binary_string= HexToBinary(string_buffer);
-    CacheSimulator(binary_string);
+    int way[4] = {1,2,4,8};
+    int cache[7] = {1,2,4,8,16,32,64};
+    for (int i = 0; i < 4;i++){
+        for (int j = 0; j < 7;j++){
+            CacheSimulator(binary_string,way[i],cache[j]);
+            cout << endl;
+        }
+    }
 
     return 0;
 }
