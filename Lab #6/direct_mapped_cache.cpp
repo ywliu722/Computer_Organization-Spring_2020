@@ -8,9 +8,6 @@
 #include <vector>
 #include <string>
 
-#define CACHESIZE 256
-#define BLOCKSIZE 256
-
 using namespace std;
 // convert the input hex string to binary
 vector<vector<int> > HexToBinary(vector<string> &input){
@@ -53,7 +50,7 @@ int binary_to_decimal(vector<int> &target, int start, int end){
 }
 
 // Cache Simulation
-void CacheSimulator(vector<vector<int> > &binary_string){
+void CacheSimulator(vector<vector<int> > &binary_string, int CACHESIZE, int BLOCKSIZE){
     // calculate some needed numbers
     int block_num = (CACHESIZE * 1024) / BLOCKSIZE;
     int offset_length = int(log2(BLOCKSIZE));
@@ -99,7 +96,14 @@ int main(){
     }
 
     vector<vector<int> > binary_string= HexToBinary(string_buffer);
-    CacheSimulator(binary_string);
+    int cache[4] = {4,16,64,256};
+    int block[5] = {16,32,64,128,256};
+    for (int i = 0; i < 4;i++){
+        for (int j = 0; j < 5;j++){
+            CacheSimulator(binary_string,cache[i],block[j]);
+            cout << endl;
+        }
+    }
 
     return 0;
 }
