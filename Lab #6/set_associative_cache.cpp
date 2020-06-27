@@ -2,6 +2,7 @@
 //20200615 10:38 AM Complete binary_to_decimal() by 0716236
 //20200615 11:26 AM Complete CacheSimulator() by 0716236
 //20200615 11:44 AM Modify HexToBinary()
+//20200625 11:54 PM Debug Finish!
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -20,16 +21,20 @@ vector<vector<int> > HexToBinary(vector<string> &input){
         // initialize 32-bit address
         result[i].resize(32, 0);
         // processing each byte and we need to handle any size of input address string
-        int tmp = 0;
+        long long int tmp = 0;
         for (int j = 0; j < input[i].size();j++){
             // convert hex to decimal
             if(input[i][j]>='0' && input[i][j]<='9'){
                 tmp *= 16;
                 tmp += input[i][j] - '0';
             }
+            else if(input[i][j]>='a' && input[i][j]<='f'){
+                tmp *= 16;
+                tmp += (input[i][j] - 'a' + 10);
+            }
             else if(input[i][j]>='A' && input[i][j]<='F'){
                 tmp *= 16;
-                tmp += input[i][j] - 'A' + 10;
+                tmp += (input[i][j] - 'A' + 10);
             }
         }
         // convert decimal to binary
