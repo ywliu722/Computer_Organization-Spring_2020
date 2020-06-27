@@ -1,6 +1,7 @@
 //20200614 02:38 PM Complete Input, main(), HextoBinary() by 0716236
 //20200615 10:38 AM Complete binary_to_decimal(), CacheSimulator() by 0716236
 //20200615 11:44 AM Modify HexToBinary()
+//20200625 11:54 PM Debug Finish!
 #include <iostream>
 #include <iomanip>
 #include <fstream>
