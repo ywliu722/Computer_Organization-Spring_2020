@@ -17,12 +17,16 @@ vector<vector<int> > HexToBinary(vector<string> &input){
         // initialize 32-bit address
         result[i].resize(32, 0);
         // processing each byte and we need to handle any size of input address string
-        int tmp = 0;
+        long long int tmp = 0;
         for (int j = 0; j < input[i].size();j++){
             // convert hex to decimal
             if(input[i][j]>='0' && input[i][j]<='9'){
                 tmp *= 16;
                 tmp += input[i][j] - '0';
+            }
+            else if(input[i][j]>='a' && input[i][j]<='f'){
+                tmp *= 16;
+                tmp += input[i][j] - 'a' + 10;
             }
             else if(input[i][j]>='A' && input[i][j]<='F'){
                 tmp *= 16;
@@ -94,7 +98,6 @@ int main(){
         }
         file.close();
     }
-
     vector<vector<int> > binary_string= HexToBinary(string_buffer);
     int cache[4] = {4,16,64,256};
     int block[5] = {16,32,64,128,256};
